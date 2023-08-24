@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Coursework
+title: About
 tags: [about, Jekyll, theme, moon]
 date: 2023-08-23
 comments: false
@@ -13,7 +13,9 @@ comments: false
 * Bachelor of Science in Computer Science (2026)
 * Engineering Honors Program
 
-## Preview
+## Awards
+* G2 Software Systems, Georgia Griffiths Endowed Award
+* CSULB President's List
 
 {% capture images %}
     https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png
