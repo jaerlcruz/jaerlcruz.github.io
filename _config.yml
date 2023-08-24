@@ -1,6 +1,6 @@
 # Site
 title:              Justine Rae Cruz
-bio:                'Computer Science student passionate about combining computers and creativity.'
+bio:                'Computer Science student at California State University, Long Beach. Passionate about combining computers and creativity.'
 description:        "Computer Science student passionate about combining computers and creativity."
 reading_time:       false
 words_per_minute:   200
@@ -26,7 +26,7 @@ sass:
   style:            compressed
 
 # Comments
-disqus_shortname:   taylantatli
+#disqus_shortname:   taylantatli
 
 # Social
 # if you don't have any of social below, comment the line.
@@ -37,7 +37,7 @@ disqus_shortname:   taylantatli
   #ad-client:
   #ad-slot:
 #bing-verify:
-#email:
+email:              jaeraelcruz@gmail.com
 #twitter:            username
 #facebook:           username
 github-url:         jaerlcruz
