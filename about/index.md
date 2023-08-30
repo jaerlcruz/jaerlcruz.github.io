@@ -11,10 +11,10 @@ comments: false
 ## Education
 * California State University, Long Beach
 * Bachelor of Science in Computer Science (2026)
-* Engineering Honors Program
 
 ## Awards
 * G2 Software Systems, Georgia Griffiths Endowed Award
+* Engineering Honors Program
 * CSULB President's List
 
 {% capture images %}
