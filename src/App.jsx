@@ -100,19 +100,19 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="mb-16">
       {/* overlays */}
       {focus && 
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-[rgba(47,47,47,0.3)]" onClick={() => setFocus(null)}>
-          <div className="fixed w-1/2 h-3/5 lg:h-2/3 border bg-[#E0DAD2] p-4" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-70 bg-[rgba(47,47,47,0.3)]" onClick={() => setFocus(null)}>
+          <div className="flex flex-col fixed max-w-4/5 lg:w-1/2 h-3/5 lg:h-2/3 border bg-[#E0DAD2] p-2 lg:p-4" onClick={(e) => e.stopPropagation()}>
               <p className="text-right cursor-pointer mb-2" onClick={() => setFocus(null)}>X</p>
-              <div className="flex flex-col items-center w-full h-full px-8">
+              <div className="flex flex-col items-center w-full h-full x-8">
                 {focus.previewImg !== "" ? 
                   <img src={focus.previewImg} className="mb-2 border max-h-3/5"/>
                 :<></>}
                 <h2 className="text-2xl font-semibold my-1">{focus.title}</h2>
-                <p className="w-full">{focus.desc}</p>
-                <p className="italic mt-2 w-full">
+                <p className="w-full lg:text-base text-sm">{focus.desc}</p>
+                <p className="italic mt-2 w-full lg:text-base text-sm">
                   contains: {focus.ingredients}  
                 </p>         
                 {focus.gitlink === "" ?
@@ -125,10 +125,9 @@ function App() {
           </div>
         </div>
       }
-    <div className="mx-8 md:mx-24 lg:mx-64">
-      
+
       {/* navbar */}
-      <div className="sticky top-0 z-40 bg-[#E0DAD2] left-0 w-full pb-8 pt-8">
+      <div className="sticky top-0 z-60 bg-[#E0DAD2] left-0 w-full pb-8 pt-8">
         <h2 className="text-center text-3xl md:text-4xl font-bold italic">
           justine's little cafe
         </h2>
@@ -143,7 +142,9 @@ function App() {
         </div>
       </div>
 
-      <div className="md:flex gap-12">
+    <div className="mx-8 md:mx-24 lg:mx-64">
+
+      <div className="flex flex-col md:flex-row md:gap-12 gap-8">
         {/* socials container */}
         <div className="md:w-1/2">
           <h2 id="appetizers" className="text-xl">
@@ -209,11 +210,11 @@ function App() {
           desserts / <em>about me</em>
         </h2>
         <hr className="pb-2"/>
-        <div className="py-4 flex items-center justify-between">
-            <img className="bg-[#E2D591] max-w-[30%] rounded-full mb-2 border transition-all ease-in-out -rotate-6 hover:rotate-6" src={hoverProfile?profile:halftone}
+        <div className="py-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-8">
+            <img className="bg-[#E2D591] w-4/5 sm:max-w-[30%] rounded-full mb-2 border transition-all ease-in-out -rotate-6 hover:rotate-6" src={hoverProfile?profile:halftone}
             onMouseEnter={() => setHoverProfile(true)}
             onMouseLeave={() => setHoverProfile(false)}/>
-            <div className="ml-8">
+            <div className="">
               <h2 className="text-3xl font-bold mb-2">Justine Cruz</h2>
               <p>
                 Computer Science graduate from California State University, Long Beach. Passionate about combining computers and creativity. Aspiring full-stack developer.

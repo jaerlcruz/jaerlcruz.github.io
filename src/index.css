@@ -4,8 +4,9 @@
 
 :root {
   font-family: 'DM Sans', system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
+  line-height: 1.2;
   font-weight: 400;
+  overflow-x: hidden;
 
   color-scheme: light dark;
   /* color: #5A310D; */
