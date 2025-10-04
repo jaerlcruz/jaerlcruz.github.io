@@ -211,7 +211,7 @@ function App() {
         </h2>
         <hr className="pb-2"/>
         <div className="py-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-8">
-            <img className="bg-[#E2D591] w-4/5 sm:max-w-[30%] rounded-full mb-2 border transition-all ease-in-out -rotate-6 hover:rotate-6" src={hoverProfile?profile:halftone}
+            <img className="bg-[#E2D591] w-4/5 sm:max-w-[30%] rounded-full mb-2 border transition-all ease-in-out -rotate-12 hover:rotate-6" src={hoverProfile?profile:halftone}
             onMouseEnter={() => setHoverProfile(true)}
             onMouseLeave={() => setHoverProfile(false)}/>
             <div className="">
@@ -219,6 +219,10 @@ function App() {
               <p>
                 Computer Science graduate from California State University, Long Beach. Passionate about combining computers and creativity. Aspiring full-stack developer.
               </p>
+              <button className="border px-4 py-2 mt-4 focus:font-bold hover:font-bold flex gap-2 items-center justify-center">
+                <a href="/Justine_Cruz_Resume.pdf" target="_blank">Resume</a>
+                <img src="/arrow-up-right.svg" className="w-4 h-4"/>
+              </button>
             </div>
         </div>
       </div>
