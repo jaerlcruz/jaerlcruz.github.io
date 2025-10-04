@@ -125,7 +125,7 @@ function App() {
           </div>
         </div>
       }
-    <div className="px-8 md:px-24 lg:px-64">
+    <div className="mx-8 md:mx-24 lg:mx-64">
       
       {/* navbar */}
       <div className="sticky top-0 z-40 bg-[#E0DAD2] left-0 w-full pb-8 pt-8">
@@ -185,7 +185,7 @@ function App() {
           entrees / <em>projects</em>
         </h2>
         <hr className="pb-2"/>
-        <ul className="list-none flex gap-2 py-2 overflow-scroll  overflow-y-hidden scrollbar w-full h-full" onWheel={(e) => {
+        <ul className="list-none flex gap-2 py-2 overflow-x-scroll scrollbar" onWheel={(e) => {
           e.currentTarget.scrollLeft += e.deltaY;
         }}>
             {entrees.map((entree, index) => (
