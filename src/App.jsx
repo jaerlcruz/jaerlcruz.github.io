@@ -1,11 +1,13 @@
 import { useState, useRef } from 'react';
 import reactLogo from './assets/react.svg';
 import viteLogo from '/vite.svg';
-import profile from './assets/circle.png';
+import profile from '/colory.png';
 import './App.css';
 import EntreeCard from './components/entreeCard';
 import Starter from './components/starter';
 import githubIcon from '/github.svg'
+import halftone from '/hty.png';
+const previews = import.meta.glob('/previews/*.png', { eager: true });
 
 const appetizers = [
   {title: 'linkedin', price: '3.43', icon: 'linkedin.svg', link: 'https://www.linkedin.com/in/justineraecruz/'},
@@ -28,7 +30,8 @@ const entrees = [
         imgSrc: "cookiebread.png",
         desc: "a social web application for foodies to share orders and recipes.",
         ingredients: "react.js, prisma, supabase",
-        gitlink: "https://github.com/angietea101/khrave-1.0" 
+        gitlink: "https://github.com/angietea101/khrave-1.0",
+        previewImg: "/previews/khrave.png"
       },
     {
         title: "cafinity",
@@ -36,7 +39,8 @@ const entrees = [
         imgSrc: "coffeejelly.png",
         desc: "a web application for cafe enjoyers to find new spots and share reviews.",
         ingredients: "react.js, firebase, tailwind css",
-        gitlink: "https://github.com/mel418/Cafinity" 
+        gitlink: "https://github.com/mel418/Cafinity",
+        previewImg: "/previews/cafinity.png"
       },
     {
         title: "safetyshark",
@@ -44,7 +48,8 @@ const entrees = [
         imgSrc: "tartine.png",
         desc: "a map app for students to report suspicious activity on campus.",
         ingredients: "react.js, google maps api",
-        gitlink: "https://github.com/jaerlcruz/SafetyReportMap" 
+        gitlink: "https://github.com/jaerlcruz/SafetyReportMap",
+        previewImg: ""
       },
     {
         title: "marinamuse",
@@ -52,15 +57,17 @@ const entrees = [
         imgSrc: "marbledanish.png",
         desc: "a collaborative music application for marinahacks, csulb wic's 24-hour hackathon.",
         ingredients: "react.js",
-        gitlink: "https://github.com/MekhiHart/MarinaMuse-2024" 
+        gitlink: "https://github.com/MekhiHart/MarinaMuse-2024",
+        previewImg: "/previews/marinamuse.png"
       },
     {
         title: "let's go fishing",  
         price: "20.25",
         imgSrc: "melonsoda.png",
-        desc: "final project for a computer graphics course, comprised of sketchfab models.",
+        desc: "final project for a computer graphics course, comprised of 3d models & physics elements.",
         ingredients: "c++, opengl, oop, sfml, glsl",
-        gitlink: "" 
+        gitlink: "",
+        previewImg: "/previews/fishing.png"
       },
     {
         title: "etch-a-sketch",
@@ -68,7 +75,8 @@ const entrees = [
         imgSrc: "croissant.png",
         desc: "my customized pixel art editor.",  
         ingredients: "javascript, html, css",
-        gitlink: "" 
+        gitlink: "https://github.com/jaerlcruz/etch-a-sketch",
+        previewImg: ""
       },
     {
         title: "the little gardener",
@@ -76,13 +84,15 @@ const entrees = [
         imgSrc: "matchaswirl.png",
         desc: "an ai-powered tracker for plant parents to keep their garden in their pocket. for lahacks 2025.",
         ingredients: "react native, mongodb, google gemini api, expo",
-        gitlink: "" 
+        gitlink: "https://github.com/aiden-perkins/thelittlegardener",
+        previewImg: "/previews/gardener.png"
       }
 ]
 
 function App() {
 
   const [focus, setFocus] = useState(null);
+  const [hoverProfile, setHoverProfile] = useState(false);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
@@ -94,13 +104,24 @@ function App() {
       {/* overlays */}
       {focus && 
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-[rgba(47,47,47,0.3)]" onClick={() => setFocus(null)}>
-          <div className="fixed w-1/2 h-3/5 border bg-[#E0DAD2] flex flex-col justify-center items-center p-4">
-              <h2 className="text-2xl font-semibold mb-4">{focus.title}</h2>
-              <p>{focus.desc}</p>
-              <button className="border px-4 py-1 mt-4 hover:font-extrabold transition-all ease-in-out hover:cursor-pointer flex items-center gap-2">
-                <img src={githubIcon} className="w-4 h-4"/>
+          <div className="fixed w-1/2 h-3/5 lg:h-2/3 border bg-[#E0DAD2] p-4" onClick={(e) => e.stopPropagation()}>
+              <p className="text-right cursor-pointer mb-2" onClick={() => setFocus(null)}>X</p>
+              <div className="flex flex-col items-center w-full h-full px-8">
+                {focus.previewImg !== "" ? 
+                  <img src={focus.previewImg} className="mb-2 border max-h-3/5"/>
+                :<></>}
+                <h2 className="text-2xl font-semibold my-1">{focus.title}</h2>
+                <p className="w-full">{focus.desc}</p>
+                <p className="italic mt-2 w-full">
+                  contains: {focus.ingredients}  
+                </p>         
+                {focus.gitlink === "" ?
+                <></>:
+                (<button className="border px-4 py-1 mt-4 hover:font-extrabold transition-all ease-in-out hover:cursor-pointer flex items-center gap-2" onClick={() => window.open(focus.gitlink, '_blank')}>
+                  <img src={githubIcon} className="w-4 h-4"/>
                 add to order
-                </button>
+                </button>)}
+              </div>
           </div>
         </div>
       }
@@ -164,8 +185,9 @@ function App() {
           entrees / <em>projects</em>
         </h2>
         <hr className="pb-2"/>
-        <ul className="list-none flex gap-2 py-2
-        overflow-x-scroll scrollbar">
+        <ul className="list-none flex gap-2 py-2 overflow-scroll  overflow-y-hidden scrollbar w-full h-full" onWheel={(e) => {
+          e.currentTarget.scrollLeft += e.deltaY;
+        }}>
             {entrees.map((entree, index) => (
               <div key={index}
               onClick={() => setFocus(entree)}>
@@ -188,7 +210,9 @@ function App() {
         </h2>
         <hr className="pb-2"/>
         <div className="py-4 flex items-center justify-between">
-            <img className="bg-[#E2D591] max-w-[30%] rounded-full mb-2 border" src={profile}/>
+            <img className="bg-[#E2D591] max-w-[30%] rounded-full mb-2 border transition-all ease-in-out -rotate-6 hover:rotate-6" src={hoverProfile?profile:halftone}
+            onMouseEnter={() => setHoverProfile(true)}
+            onMouseLeave={() => setHoverProfile(false)}/>
             <div className="ml-8">
               <h2 className="text-3xl font-bold mb-2">Justine Cruz</h2>
               <p>

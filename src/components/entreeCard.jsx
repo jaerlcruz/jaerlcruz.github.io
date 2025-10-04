@@ -9,8 +9,7 @@ function EntreeCard({title, price, imgSrc, desc, ingredients}) {
     return (
         <li className="group border p-4 flex-col items-center justify-center text-left w-64 h-full shrink-0 hover:-rotate-1 transition-all ease-in-out hover:cursor-pointer"
         onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
-        onClick={() => setFocus(!focus)}>
+        onMouseLeave={() => setIsHovered(false)}>
             <img className="bg-[#E2D591] group-hover:bg-transparent group-hover:rotate-12 w-48 h-48 rounded-full m-auto mb-2 border transition-all ease-in-out"
             src={isHovered?`/icons/${imgSrc}`:`/halftones/${imgSrc}`}/>
             <div className="flex justify-between text-lg">
