@@ -1,11 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import profile from '/colory.png';
 import './App.css';
 import EntreeCard from './components/entreeCard';
 import Starter from './components/starter';
 import halftone from '/hty.png';
-import { FaLinkedin, FaGithub, FaEnvelope, FaSpotify } from "react-icons/fa";
-import { FiArrowUpRight } from "react-icons/fi";
+import { FaLinkedin, FaGithub, FaEnvelope, FaSpotify, FaMoon } from "react-icons/fa";
+import { FiArrowUpRight, FiSun } from "react-icons/fi";
 
 const appetizers = [
   {title: 'linkedin', 
@@ -103,18 +103,27 @@ function App() {
 
   const [focus, setFocus] = useState(null);
   const [hoverProfile, setHoverProfile] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     section?.scrollIntoView({ behavior: 'smooth', block: 'center'});
   }
 
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+  }, [darkMode]);
+
   return (
-    <div className="mb-16">
+    <div className="pb-16 dark:bg-[#413D3B] dark:text-[#E0DAD2] transition-all ease-in-out">
       {/* overlays */}
       {focus && 
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-70 bg-[rgba(47,47,47,0.3)]" onClick={() => setFocus(null)}>
-          <div className="flex flex-col fixed max-w-4/5 lg:w-1/2 h-3/5 lg:h-2/3 border bg-[#E0DAD2] p-2 lg:p-4" onClick={(e) => e.stopPropagation()}>
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-70 bg-[rgba(47,47,47,0.7)]" onClick={() => setFocus(null)}>
+          <div className="flex flex-col fixed max-w-4/5 lg:w-1/2 h-3/5 lg:h-2/3 border bg-[#E0DAD2] dark:bg-[#413D3B] p-2 lg:p-4" onClick={(e) => e.stopPropagation()}>
               <p className="text-right cursor-pointer mb-2" onClick={() => setFocus(null)}>X</p>
               <div className="flex flex-col items-center w-full h-full x-8">
                 {focus.previewImg !== "" ? 
@@ -137,8 +146,8 @@ function App() {
       }
 
       {/* navbar */}
-      <div className="sticky top-0 z-60 bg-[#E0DAD2] left-0 w-full pb-8 pt-8">
-        <h2 className="text-center text-3xl md:text-4xl font-bold italic">
+      <div className="sticky top-0 z-60 bg-[#E0DAD2] left-0 w-full pb-6 pt-8 text-center dark:bg-[#413D3B] dark:text-[#E0DAD2] transition-all ease-in-out">
+        <h2 className="text-3xl md:text-4xl font-bold italic dark:text-[#BF963C]">
           justine's little cafe
         </h2>
         
@@ -150,6 +159,20 @@ function App() {
           <button className="m-0 border px-2"
             onClick={() => scrollToSection('desserts')}>desserts</button>
         </div>
+
+        <button className="mt-2 m-auto flex gap-2 items-center"
+          onClick={() => setDarkMode(!darkMode)}>
+          {darkMode?
+            <>
+            dinner menu
+            <FaMoon/>
+            </>
+            :<>
+            lunch menu
+            <FiSun/>
+            </>
+          }
+        </button>
       </div>
 
     <div className="mx-8 md:mx-24 lg:mx-64">
@@ -229,8 +252,9 @@ function App() {
               <p>
                 Computer Science graduate from California State University, Long Beach. Passionate about combining computers and creativity. Aspiring full-stack developer.
               </p>
-              <button className="border px-4 py-2 mt-4 focus:font-bold hover:font-bold flex gap-2 items-center justify-center">
-                <a href="/Justine_Cruz_Resume.pdf" target="_blank">Resume</a>
+              <button className="border px-4 py-2 mt-4 focus:font-bold hover:bg-[#474747] hover:text-[#E2D591] flex gap-2 items-center justify-center cursor-pointer"
+                onClick={() => window.open("/Justine_Cruz_Resume.pdf", '_blank')}>
+                Resume
                 <FiArrowUpRight />
               </button>
             </div>
