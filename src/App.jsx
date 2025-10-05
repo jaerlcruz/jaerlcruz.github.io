@@ -1,19 +1,29 @@
 import { useState, useRef } from 'react';
-import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
 import profile from '/colory.png';
 import './App.css';
 import EntreeCard from './components/entreeCard';
 import Starter from './components/starter';
-import githubIcon from '/github.svg'
 import halftone from '/hty.png';
-const previews = import.meta.glob('/previews/*.png', { eager: true });
+import { FaLinkedin, FaGithub, FaEnvelope, FaSpotify } from "react-icons/fa";
+import { FiArrowUpRight } from "react-icons/fi";
 
 const appetizers = [
-  {title: 'linkedin', price: '3.43', icon: 'linkedin.svg', link: 'https://www.linkedin.com/in/justineraecruz/'},
-  {title: 'github', price: '10', icon: 'github.svg', link: 'https://github.com/jaerlcruz'},
-  {title: 'email', price: '2.26', icon: 'envelope.svg', link: 'mailto:jaeraelcruz@gmail.com'},
-  {title: 'spotify', price: '18', icon: 'spotify.svg', link: 'https://open.spotify.com/user/strawbunnii?si=45df33774efa4a45'}
+  {title: 'linkedin', 
+    price: '3.43', 
+    icon: <FaLinkedin/>,//'linkedin.svg', 
+    link: 'https://www.linkedin.com/in/justineraecruz/'},
+  {title: 'github', 
+    price: '10', 
+    icon: <FaGithub/>,// 'github.svg', 
+    link: 'https://github.com/jaerlcruz'},
+  {title: 'email', 
+    price: '2.26', 
+    icon: <FaEnvelope/>,//'envelope.svg', 
+    link: 'mailto:jaeraelcruz@gmail.com'},
+  {title: 'spotify', 
+    price: '18', 
+    icon: <FaSpotify/>,//'spotify.svg', 
+    link: 'https://open.spotify.com/user/strawbunnii?si=45df33774efa4a45'}
 ]
 
 const drinks = [
@@ -118,7 +128,7 @@ function App() {
                 {focus.gitlink === "" ?
                 <></>:
                 (<button className="border px-4 py-1 mt-4 hover:font-extrabold transition-all ease-in-out hover:cursor-pointer flex items-center gap-2" onClick={() => window.open(focus.gitlink, '_blank')}>
-                  <img src={githubIcon} className="w-4 h-4"/>
+                  <FaGithub />
                 add to order
                 </button>)}
               </div>
@@ -156,7 +166,7 @@ function App() {
                 <Starter key={index}
                 title={app.title}
                 price={app.price}
-                icon={app.icon}
+                Icon={() => app.icon}
                 link={app.link}
                 />
             ))}
@@ -221,7 +231,7 @@ function App() {
               </p>
               <button className="border px-4 py-2 mt-4 focus:font-bold hover:font-bold flex gap-2 items-center justify-center">
                 <a href="/Justine_Cruz_Resume.pdf" target="_blank">Resume</a>
-                <img src="/arrow-up-right.svg" className="w-4 h-4"/>
+                <FiArrowUpRight />
               </button>
             </div>
         </div>

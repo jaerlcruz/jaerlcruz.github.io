@@ -1,10 +1,8 @@
 import React, { useState, useRef } from 'react';
-import EntreeOverlay from './entreeOverlay';
 const imgs = import.meta.glob('/icons/*.png', { eager: true });
 
 function EntreeCard({title, price, imgSrc, desc, ingredients}) {
     const [isHovered, setIsHovered] = useState(false);
-    const [focus, setFocus] = useState(false);
 
     return (
         <li className="group border p-4 flex-col text-left w-64 h-full hover:-rotate-1 transition-all ease-in-out hover:cursor-pointer"
