@@ -10,8 +10,8 @@
 
   color-scheme: light dark;
   /* color: #5A310D; */
-  color: #474747;
-  background-color: #E0DAD2;
+  color: light-dark(#474747, #E0DAD2);
+  background-color: light-dark(#E0DAD2, #413D3B);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -41,7 +41,8 @@
 
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+/* @custom-variant dark (&:where(.dark, .dark *)); */
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -100,7 +101,7 @@ button:focus-visible {
   font-weight: 600;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     color: #213547;
     background-color: #ffffff;
@@ -111,4 +112,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

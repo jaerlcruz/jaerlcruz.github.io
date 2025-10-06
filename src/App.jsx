@@ -103,23 +103,31 @@ function App() {
 
   const [focus, setFocus] = useState(null);
   const [hoverProfile, setHoverProfile] = useState(false);
-  const [darkMode, setDarkMode] = useState(false);
-
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved) return saved === 'dark' ? true : false;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  });
+  
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+      document.body.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.body.classList.remove('dark');
+      document.body.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [darkMode]);
+  
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     section?.scrollIntoView({ behavior: 'smooth', block: 'center'});
   }
 
-  useEffect(() => {
-    if (darkMode) {
-      document.body.classList.add('dark');
-    } else {
-      document.body.classList.remove('dark');
-    }
-  }, [darkMode]);
-
   return (
-    <div className="pb-16 dark:bg-[#413D3B] dark:text-[#E0DAD2] transition-all ease-in-out">
+    <div className="pb-16 transition-all ease-in-out text-[#474747] dark:text-[#E0DAD2] bg-[#E0DAD2] dark:bg-[#413D3B]">
       {/* overlays */}
       {focus && 
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-70 bg-[rgba(47,47,47,0.7)]" onClick={() => setFocus(null)}>
@@ -146,8 +154,8 @@ function App() {
       }
 
       {/* navbar */}
-      <div className="sticky top-0 z-60 bg-[#E0DAD2] left-0 w-full pb-6 pt-8 text-center dark:bg-[#413D3B] dark:text-[#E0DAD2] transition-all ease-in-out">
-        <h2 className="text-3xl md:text-4xl font-bold italic dark:text-[#BF963C]">
+      <div className="sticky top-0 z-60 left-0 w-full pb-6 pt-8 text-center bg-[#E0DAD2] dark:bg-[#413D3B] dark:text-[#E0DAD2]">
+        <h2 className="text-3xl md:text-4xl font-bold italic text-[#5A310D] dark:text-[#BF963C]">
           justine's little cafe
         </h2>
         
