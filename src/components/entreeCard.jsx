@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-const imgs = import.meta.glob('/icons/*.png', { eager: true });
+// const imgs = import.meta.glob('/icons/*.png', { eager: true });
 
 function EntreeCard({title, price, imgSrc, desc, ingredients}) {
     const [isHovered, setIsHovered] = useState(false);

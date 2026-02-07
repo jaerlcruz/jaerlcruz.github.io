@@ -166,9 +166,11 @@ function App() {
             onClick={() => scrollToSection('entrees')}>entrees</button>
           <button className="m-0 border px-2"
             onClick={() => scrollToSection('desserts')}>desserts</button>
+          <button className="m-0 border px-2"
+            onClick={() => scrollToSection('signature')}>signature</button>
         </div>
 
-        <button className="mt-2 m-auto flex gap-2 items-center"
+        <button className="mt-2 m-auto flex gap-2 items-center cursor-pointer hover:text-[#BF963C]"
           onClick={() => setDarkMode(!darkMode)}>
           {darkMode?
             <>
@@ -245,10 +247,24 @@ function App() {
         </ul>
       </div>
 
-      {/* about me :D  */}
+      {/* designs ! */}
       <div id="desserts" className="mt-8">
         <h2 className="text-xl">
-          desserts / <em>about me</em>
+          desserts / <em>designs</em>
+        </h2>
+        <hr className="pb-2"/>
+        
+        <div className="group border w-64 h-64 bg-[#413D3B]  cursor-pointer hover:rotate-4 transition-all ease-in-out p-8">
+          <div className="bg-[url('previews/beachhacks.png')] w-full h-full bg-center bg-contain bg-no-repeat sepia group-hover:sepia-0 transition-all ease-in-out">
+          </div>
+        </div>
+
+      </div>
+
+      {/* about me :D  */}
+      <div id="signature" className="mt-8">
+        <h2 className="text-xl">
+          signature / <em>about me</em>
         </h2>
         <hr className="pb-2"/>
         <div className="py-4 flex flex-col sm:flex-row items-center justify-between gap-2 sm:gap-8">
