@@ -6,6 +6,7 @@ import Starter from './components/starter';
 import halftone from '/hty.png';
 import { FaLinkedin, FaGithub, FaEnvelope, FaSpotify, FaMoon } from "react-icons/fa";
 import { FiArrowUpRight, FiSun } from "react-icons/fi";
+import DessertCard from './components/dessertCard';
 
 const appetizers = [
   {title: 'linkedin', 
@@ -97,6 +98,27 @@ const entrees = [
         gitlink: "https://github.com/aiden-perkins/thelittlegardener",
         previewImg: "/previews/gardener.png"
       }
+]
+
+const desserts = [
+  {
+    title: "beachhacks 2025",
+    imgSrc: "beachhacks.png"
+  },
+  { title: "acm 2025",
+    imgSrc: "shark.png"
+  },
+  { title: "lahacks 2025",
+    imgSrc: "little.png"
+  },
+  {
+    title: "bismuth",
+    imgSrc: "bismuth.png"
+  },
+  {
+    title: "not too sweet",
+    imgSrc: "nts.png"
+  }
 ]
 
 function App() {
@@ -254,10 +276,18 @@ function App() {
         </h2>
         <hr className="pb-2"/>
         
-        <div className="group border w-64 h-64 bg-[#413D3B]  cursor-pointer hover:rotate-4 transition-all ease-in-out p-8">
-          <div className="bg-[url('previews/beachhacks.png')] w-full h-full bg-center bg-contain bg-no-repeat sepia group-hover:sepia-0 transition-all ease-in-out">
-          </div>
-        </div>
+        <ul className="list-none flex gap-2 py-2 overflow-x-scroll scrollbar" onWheel={(e) => {
+          e.currentTarget.scrollLeft += e.deltaY;
+        }}>
+            {desserts.map((dessert, index) => (
+              <div key={index}>
+                <DessertCard
+                title={dessert.title}
+                imgSrc={dessert.imgSrc}
+                />
+              </div>
+            ))}
+        </ul>
 
       </div>
 
